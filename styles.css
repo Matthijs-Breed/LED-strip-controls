@@ -1,0 +1,108 @@
+input[type=range] {
+    -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #FFFFFF;
+    margin-top: -14px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 64px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 100%;
+  height: 20vw;
+}
+.brightness-slider-container {
+    width: 100%;
+    height: 5vw;
+}
+.brightness-slider {
+    width: 100%;
+    height: 25%;
+    background: transparent;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.brightness-label-container {
+    text-align: center;
+}
+.brightness-label {
+    font-size: 32px;
+}
+
+.button0 {background-color: #B22222;} /* Brick Red */
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {
+    background-image: linear-gradient(90deg, #00c0FF 0%, #FFCF00 20%, #Fc4F4F 80%, #00C0FF 100%);
+    animation:slidebg 2s linear infinite;
+}
+@keyframes slidebg {
+    to {
+	background-position:20vw;
+    }
+}
+.button3 {
+    background-color: #D3D3D3;
+    width: 50%;
+} /* Gray */
+.button-container-button3 {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0}
+}
+.button4 {background-color: #D3D3D3;} /* Gray */
+
+.button5 {
+    background-image: linear-gradient(90deg, red 0%, white 20%, white 80%, blue 100%);
+    animation: fadeIn 1s infinite alternate;
+    color: black;
+}
+.button7 {
+    background: rgb(255,0,0);
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,255,0,1) 50%, rgba(255,0,0,1) 100%);
+}
+.button8 {
+    background: rgb(0,255,162);
+    background: linear-gradient(90deg, rgba(0,255,162,1) 0%, rgba(0,207,170,1) 18%, rgba(0,0,255,1) 50%, rgba(0,224,255,1) 79%, rgba(244,0,255,1) 100%);
+}
+.color-slider-container {
+    width: 100%;
+    height: 20vw;
+}
+.color-slider {
+    width: 100%;
+    height: 25%;
+    background: transparent;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.color-slide-button {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    text-align: center;
+    font-size: 48px;
+    margin: 4px 2px;
+}

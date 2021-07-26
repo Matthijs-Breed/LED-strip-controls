@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+</head>
+<body>
+
+<div class="button-container">
+    <button class="button button0 click-action" data-id="0" id="mode-0">Off</button>
+</div>
+<div class="brightness-slider-container">
+    <div class="brightness-label-container">
+        <span class="brightness-label">Brightness</span>
+    </div>    
+    <form id="brightness-slider-form">
+        <input type="range" class="brightness-slider" id="brightness-slider" value="0" max="99">
+    </form>
+</div>
+<script>
+    $('#brightness-slider-form').on('input change', function(){
+        $.ajax({
+            type: 'post',
+            url: '/light/brightness.php',
+            data: {brightness: $('#brightness-slider').val()}
+        });
+    });
+</script>
+<div class="color-slider-container">
+    <form id="color-slider-form">
+        <input type="range" class="color-slider" id="color-slider-red"   data-id="red"   value="255" min="0" max="255"/>
+	<p/>
+	<input type="range" class="color-slider" id="color-slider-green" data-id="green" value="255" min="0" max="255"/>
+	<p/>	
+	<input type="range" class="color-slider" id="color-slider-blue"  data-id="blue"  value="255" min="0" max="255"/>
+	<input type="hidden" name="mode" value="6" />
+        <p/>
+    <div class="color-slide-button">
+	<button type="submit">
+	Use Color Slider -
+	Value: #<span id="color-slider-value-red">FF</span><span id="color-slider-value-green">FF</span><span id="color-slider-value-blue">FF</span>
+    	</button>
+    </div>
+    </form>
+</div>
+<script>
+$('.color-slider').on('input change', function(){
+    $('#color-slider-value-' + $(this).attr("data-id")).html(
+	Number($(this).val()).toString(16).toUpperCase()
+    );
+    let color = "#" + $('#color-slider-value-red').html() + $('#color-slider-value-green').html() + $('#color-slider-value-blue').html();
+    $('#color-slider-form').css('background-color', color);
+    $('#color-slider-form').submit();
+});
+$('#color-slider-form').submit(function(event) {
+    event.preventDefault();
+    let formData = {
+	mode:  "6",
+	red:   $("#color-slider-red").val(),
+	green: $("#color-slider-green").val(),
+    blue:  $("#color-slider-blue").val()
+    };
+    $.ajax({
+	type: 'post',
+	url: '/light/index.php',
+	data: formData
+    });
+});
+</script>
+<div class="button-container">
+    <button class="button button1 click-action" data-id="1" id="mode-1">Marquee</button>
+</div>
+<div class="button-container">
+    <button class="button button2 click-action" data-id="2" id="mode-2">Rainbow Whipe</button>
+</div>
+<div class="button-container-button3">
+    <button class="button button3 click-action" data-id="3" data-color="0" id="mode-3">Stars White</button>
+    <button class="button button3 click-action" data-id="3" data-color="1" id="mode-3">Stars Color</button>
+</div>
+<div>
+    <button class="button button4 click-action" data-id="4" id="mode-4">Rainbow Wave</button>
+</div>
+<div>
+    <button class="button button5 click-action" data-id="5" id="mode-5">PoPi</button>
+</div>
+<div>
+    <button class="button button7 click-action" data-id="7" id="mode-7">Comets</button>
+</div>
+<div>
+    <button class="button button8 click-action" data-id="8" id="mode-8">Aurora</button>
+</div>
+<div>
+    <button class="button button9 click-action" data-id="9" id="mode-9">Lava</button>
+</div>
+<div>
+    <button class="button button9 click-action" data-id=":" id="mode-:">Pulse</button>
+</div>
+<div id="mode-status"></div>
+
+<script>
+$('.click-action').click(function(){
+    let mode = $(this).data('id');
+    let color = $(this).data('color');
+    console.log(mode);
+    result = $.ajax({
+	url: '/light/index.php',
+	data: {
+        "mode": mode,
+        "color": color
+    },
+	type: 'post',
+	success: function(result)
+	{
+	    $('#mode-status').html('stuff');
+	}
+    });
+});
+</script>
+</body>
+</html>
+
